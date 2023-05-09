@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+
+  app-1:
+    build: .
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+    command: python index.py
+
+  app-2:
+    build: .
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+    command: python index.py
+    
+  app-3:
+    build: .
+    restart: always
+    ulimits:
+      nofile:
+        soft: 1024
+        hard: 1024
+    command: python index.py
+
+  nginx:
+    image: nginx
+    volumes:
+      - "${PWD}/nginx_default.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - "8080:80"
